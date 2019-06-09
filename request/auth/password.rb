@@ -9,20 +9,13 @@ module Request
       GRANT_TYPE = 'password'
       CLIENT_ID = 'other.conta'
       CLIENT_SECRET = 'yQPeLzoHuJzlMMSAjC-LgNUJdUecx8XO'
-      CONTENT_TYPE = 'application/json'
-      X_CORRELATION_ID = 'WEB-APP.pewW9'
-      USER_AGENT = 'nubank_rb - https://github.com/danilobarion1986/nubank_rb'
-      ORIGIN = 'https://conta.nubank.com.br'
-      REFERER = 'https://conta.nubank.com.br/'
-      HEADERS = { 'Content-Type' => CONTENT_TYPE,
-                  'X-Correlation-Id' => X_CORRELATION_ID,
-                  'User-Agent' => USER_AGENT,
-                  'Origin' => ORIGIN,
-                  'Referer' => REFERER }.freeze
 
       class << self
         def self.call(login_url, login, password)
-          Request::Client.call(login_url, :post, body: body(login, password), headers: HEADERS)
+          Request::Client.call(login_url,
+                               :post,
+                               body: body(login, password),
+                               headers: Request::Client::HEADERS)
         end
 
         private

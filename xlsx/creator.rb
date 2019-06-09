@@ -8,18 +8,19 @@ module Xlsx
   # Create a .xlsx file using bill data
   class Creator
     HEADERS = %w[Data Descrição Valor Categoria].freeze
+    class << self
+      def call(bill)
+        xlsx_data = SpreadsheetArchitect.to_xlsx(headers: HEADERS, data: values_from(bill))
+        now = Time.now.strftime('%d_%m_%y__%H_%M')
 
-    def self.call(bill)
-      xlsx_data = SpreadsheetArchitect.to_xlsx(headers: HEADERS, data: values_from(bill))
-      now = Time.now.strftime('%d_%m_%y__%H_%M')
+        File.open("nubank_bill_#{now}.xlsx", 'w+b') { |file| file.write(xlsx_data) }
+      end
 
-      File.open("nubank_bill_#{now}.xlsx", 'w+b') { |file| file.write(xlsx_data) }
-    end
+      private
 
-    private
-
-    def self.values_from(bill)
-      bill.items.map { |expense| Model::Expense.new(expense).to_ary }
+      def values_from(bill)
+        bill.items.map { |expense| Model::Expense.new(expense).to_ary }
+      end
     end
   end
 end
