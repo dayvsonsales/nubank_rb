@@ -10,11 +10,16 @@ module Xlsx
     HEADERS = %w[Data Descrição Valor Categoria].freeze
 
     def self.call(bill)
-      values = bill.items.map { |expense| Model::Expense.new(expense).to_ary }
-      xlsx_data = SpreadsheetArchitect.to_xlsx(headers: HEADERS, data: values)
+      xlsx_data = SpreadsheetArchitect.to_xlsx(headers: HEADERS, data: values_from(bill))
       now = Time.now.strftime('%d_%m_%y__%H_%M')
 
-      File.open("nubank_bill_#{now}.xlsx", 'w+b') { |f| f.write(xlsx_data) }
+      File.open("nubank_bill_#{now}.xlsx", 'w+b') { |file| file.write(xlsx_data) }
+    end
+
+    private
+
+    def self.values_from(bill)
+      bill.items.map { |expense| Model::Expense.new(expense).to_ary }
     end
   end
 end

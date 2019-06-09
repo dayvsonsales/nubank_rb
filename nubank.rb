@@ -21,7 +21,8 @@ app_urls = Request::DiscoveryAppUrl.call
 
 # 2) Generate UUID and QR Code from it
 uuid = SecureRandom.uuid
-QrCode::Creator.create(uuid)
+qr_code = QrCode::Creator.create(uuid)
+QrCode::Render(qr_code)
 sleep 45
 
 # 3) Call login URL, to obtain an access_token
