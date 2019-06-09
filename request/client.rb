@@ -2,6 +2,7 @@
 
 require 'typhoeus'
 require 'oj'
+require_relative './error'
 
 module Request
   # Basic request client
@@ -14,7 +15,11 @@ module Request
 
     def self.call(url, method = :get, options = {})
       request = Typhoeus.send(method, url, options)
-      Oj.load(request.response_body, symbol_keys: true)
+      body = request.response_body
+      code = request.response_code
+      raise Request::Error, "Request failed ==> Code: #{code}, Body: #{body}" if code >= 400
+
+      Oj.load(body, symbol_keys: true)
     end
   end
 end
