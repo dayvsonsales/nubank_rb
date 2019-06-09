@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 require 'securerandom'
-require_relative './discovery_url'
-require_relative './discovery_app_url'
 require_relative './qr_code/creator'
-require_relative './auth/qr_code'
-require_relative './auth/password'
 require_relative './xlsx/creator'
 require_relative './request/discovery_url'
 require_relative './request/discovery_app_url'
 require_relative './request/bills'
 require_relative './request/bill_detail'
+require_relative './request/auth/qr_code'
+require_relative './request/auth/password'
 
 # 0) Get login and password from environment variables
 login = ENV['NUBANK_LOGIN']
 password = ENV['NUBANK_PASSWORD']
-raise ArgumentError, 'Login or password not found in environment variables.!' unless login && password
+raise ArgumentError, 'Login or password not found in environment variables!' unless login && password
 
 # 1) Obtain valid URL's via discovery
 urls = Request::DiscoveryUrl.call

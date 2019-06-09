@@ -8,3 +8,4 @@ gem 'rqrcode'
 gem 'rubocop', require: false
 gem 'spreadsheet_architect'
 gem 'typhoeus'
+gem 'rubycritic'
