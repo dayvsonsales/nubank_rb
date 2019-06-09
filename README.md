@@ -1,6 +1,6 @@
 ## Nubank Ruby
 
-Get Nubank bills data using its public API.
+Get your Nubank bills within the terminal, using its public API.
 
 ### Usage
 
@@ -18,3 +18,19 @@ Then a `.xlsx` will be created with the selected bill data.
 
 + Verify the automatic login workflow
 + Use `refresh_token` after access_token expiration
+
+### How to contribute?
+
+If you want to include more functionality or suggest some change:
+
+1. Fork this repo and create a branch on your fork for your new feature/change.
+2. Write your new feature/change.
+3. Submit your PR!
+
+If you want, you can buy me a coffee too! ;)
+
+[<img src="https://www.buymeacoffee.com/assets/img/custom_images/yellow_img.png">](https://www.buymeacoffee.com/danilobarion/)
+
+### Contact
+
+If you have any questions, feel free to send me a message!
