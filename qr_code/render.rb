@@ -7,6 +7,7 @@ module QrCode
   # Render a QR Code page from its data
   class Render
     FILENAME = 'qr_code.html'
+
     class << self
       def call(qr_code)
         @qr_code = qr_code

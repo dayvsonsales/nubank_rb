@@ -1,10 +1,10 @@
 ## Nubank Ruby
 
-Get Nubank bills data using its public API's.
+Get Nubank bills data using its public API.
 
 ### Usage
 
-Run `/path/to/this/repo ruby nubank.rb`.
+Execute `/path/to/this/repo ruby nubank.rb`.
 
 The QR Code authentication workflow will begin.
 > You have 45 seconds to read the generated QR Code. After that, the login process continues.
