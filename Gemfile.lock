@@ -13,10 +13,11 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
-    axlsx (2.0.1)
-      htmlentities (~> 4.3.1)
-      nokogiri (>= 1.4.1)
-      rubyzip (~> 1.0.0)
+    axlsx (3.0.0.pre)
+      htmlentities (~> 4.3, >= 4.3.4)
+      mimemagic (~> 0.3)
+      nokogiri (~> 1.8, >= 1.8.2)
+      rubyzip (~> 1.2, >= 1.2.1)
     axlsx_styler (0.2.0)
       activesupport (>= 3.1)
       axlsx (>= 2.0, < 4)
@@ -52,6 +53,7 @@ GEM
     kwalify (0.7.2)
     launchy (2.4.3)
       addressable (~> 2.3)
+    mimemagic (0.3.3)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     nokogiri (1.10.3)
@@ -96,7 +98,7 @@ GEM
       ruby_parser (~> 3.8)
       tty-which (~> 0.4.0)
       virtus (~> 1.0)
-    rubyzip (1.0.0)
+    rubyzip (1.2.3)
     sexp_processor (4.12.1)
     spreadsheet_architect (3.2.1)
       axlsx (>= 2, < 4)
@@ -124,7 +126,8 @@ DEPENDENCIES
   rqrcode
   rubocop
   rubycritic
-  spreadsheet_architect
+  rubyzip (~> 1.2)
+  spreadsheet_architect (~> 3.2.0)
   typhoeus
 
 BUNDLED WITH
