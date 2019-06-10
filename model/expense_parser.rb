@@ -10,6 +10,8 @@ module Model
         descricao: data[:title],
         valor: (data[:amount] / 100.0),
         categoria: data[:category] }
+    rescue
+      {}
     end
   end
 end

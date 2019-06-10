@@ -5,6 +5,8 @@ require_relative './expense_parser'
 module Model
   # Get the necessary information from a bill's expense
   class Expense
+    attr_reader :data
+
     def initialize(data)
       @data = ExpenseParser.call(data)
     end
