@@ -14,9 +14,9 @@ module QrCode
         @uuid = uuid
         result = ERB.new(template).result(binding)
 
-        file = "#{File.expand_path(__dir__)}/#{FILENAME}"
-        File.open(file, 'w') { |file| file.write(result) }
-        Launchy.open("file:///#{file}")
+        filename = "#{File.expand_path(__dir__)}/#{FILENAME}"
+        File.open(filename, 'w') { |file| file.write(result) }
+        Launchy.open("file:///#{filename}")
       end
 
       private

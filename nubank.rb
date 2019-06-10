@@ -26,8 +26,8 @@ puts '====> Generating QR Code...'
 uuid = SecureRandom.uuid
 qr_code = QrCode::Creator.create(uuid)
 QrCode::Render.call(qr_code, uuid)
-puts "========> You have 45 seconds to scan it!"
-45.downto(0) { |seconds| puts "00:00:#{seconds}"; sleep 1 }
+puts '========> You have 45 seconds to scan it!'
+sleep 45
 
 # 3) Call login URL, to obtain an access_token
 puts '====> Authenticating login and password...'

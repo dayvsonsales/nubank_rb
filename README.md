@@ -17,8 +17,8 @@ Then a `.xlsx` will be created with the selected bill data.
 
 ### TODO
 
-+ Refactor main code (mainly from step 6 to the end)
-+ Use `refresh_token` after access_token expiration
++ Refactor main code (mainly from step 6 to the end) and some other parts too.
++ Use `refresh_token` after access_token expiration.
 
 ### How to contribute?
 
