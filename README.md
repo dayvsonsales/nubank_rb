@@ -4,10 +4,12 @@ Get your Nubank bills within the terminal, using its public API.
 
 ### Usage
 
-Execute `/path/to/this/repo ruby nubank.rb`.
+Install [ruby](https://www.ruby-lang.org/en/documentation/installation/#ruby-install) case you don't have it yet. I suggest at least the version 2.5.3.
 
-The QR Code authentication workflow will begin.
-> You have 45 seconds to read the generated QR Code. After that, the login process continues.
+Clone this repository, then run the command `/path/to/this/repo ruby nubank.rb`.
+
+The QR Code authentication workflow will begin. You have 45 seconds to read the generated QR Code. 
+After that, the login process continues.
 
 If it's all ok, then you'll see a list of available bills to get information from. 
 > Only _open_ and _overdue_ bills will be displayed, because future bills don't have a details link. 
