@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../client'
+require 'json'
 
 module Request
   module Auth
@@ -17,7 +18,7 @@ module Request
 
         def body(uuid)
           { 'qr_code_id' => uuid,
-            'type' => LOGIN_TYPE }
+            'type' => LOGIN_TYPE }.to_json
         end
 
         def headers(access_token)

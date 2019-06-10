@@ -8,6 +8,7 @@ module Xlsx
   # Create a .xlsx file using bill data
   class Creator
     HEADERS = %w[Data Descrição Valor Categoria].freeze
+
     class << self
       def call(bill)
         xlsx_data = SpreadsheetArchitect.to_xlsx(headers: HEADERS, data: values_from(bill))
@@ -19,7 +20,7 @@ module Xlsx
       private
 
       def values_from(bill)
-        bill.items.map { |expense| Model::Expense.new(expense).to_ary }
+        bill[:line_items].map { |expense| Model::Expense.new(expense).to_ary }
       end
     end
   end
