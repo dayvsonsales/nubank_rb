@@ -46,17 +46,28 @@ bills = Request::Bills.call(bills_url, qr_code_access_token).fetch(:bills)
 
 # 6) Select one or more bills to get detailed information
 puts
-puts 'Choose bill to get data from:'
+puts 'Choose bill to get data from (enter "999" for all bills):'
 bills.reject! { |bill| bill[:state] == 'future' }.each_with_index do |bill, index|
   state = bill[:state]
   due_date = bill.dig(:summary, :due_date)
   expenses = bill.dig(:summary, :expenses)
   puts "#{index}) [#{state}] R$ #{expenses}, due date: #{due_date}"
 end
-chosen_bill_index = gets
+chosen_bill_index = gets.chomp.to_i
 
-# 7) Get details of the chosen bill
-bill = Request::BillDetail.call(bills[chosen_bill_index.to_i], qr_code_access_token).fetch(:bill)
+if chosen_bill_index == 999
+  # 7) Get details of all the bills
+  bills.each do |bill|
+    bill = Request::BillDetail.call(bill, qr_code_access_token).fetch(:bill)
 
-# 8) Save bill details to a .xlsx file
-Xlsx::Creator.call(bill)
+    # 8) Save bill details to a .xlsx file
+    Xlsx::Creator.call(bill)
+    sleep 5 # Avoid too many requests per second
+  end
+else
+  # 7) Get details of the chosen bill
+  bill = Request::BillDetail.call(bills[chosen_bill_index], qr_code_access_token).fetch(:bill)
+
+  # 8) Save bill details to a .xlsx file
+  Xlsx::Creator.call(bill)
+end
