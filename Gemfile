@@ -10,3 +10,4 @@ gem 'rubocop', require: false
 gem 'rubycritic'
 gem 'spreadsheet_architect', '~> 3.2.0'
 gem 'typhoeus'
+gem 'rspec'
