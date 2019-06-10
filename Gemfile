@@ -2,12 +2,13 @@
 
 source 'https://rubygems.org'
 
-gem 'rubyzip', '~> 1.2'
 gem 'launchy'
 gem 'oj'
 gem 'rqrcode'
-gem 'rubocop', require: false
-gem 'rubycritic'
 gem 'spreadsheet_architect', '~> 3.2.0'
+gem 'rubyzip', '~> 1.2'
 gem 'typhoeus'
 gem 'rspec'
+gem 'simplecov', require: false
+gem 'rubocop', require: false
+gem 'rubycritic'
