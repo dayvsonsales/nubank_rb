@@ -5,7 +5,7 @@ require 'rqrcode'
 module QrCode
   # Create a QR Code from UUID
   class Creator
-    def self.create(uuid)
+    def self.call(uuid)
       RQRCode::QRCode.new(uuid)
     end
   end

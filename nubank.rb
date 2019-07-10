@@ -24,10 +24,12 @@ app_urls = Request::DiscoveryAppUrl.call
 # 2) Generate UUID and QR Code from it
 puts '====> Generating QR Code...'
 uuid = SecureRandom.uuid
-qr_code = QrCode::Creator.create(uuid)
+qr_code = QrCode::Creator.call(uuid)
 QrCode::Render.call(qr_code, uuid)
-puts '========> You have 45 seconds to scan it!'
-sleep 45
+
+SECONDS_TO_SCAN_QRCODE = 45
+puts "========> You have #{SECONDS_TO_SCAN_QRCODE} seconds to scan it!"
+sleep SECONDS_TO_SCAN_QRCODE
 
 # 3) Call login URL, to obtain an access_token
 puts '====> Authenticating login and password...'
