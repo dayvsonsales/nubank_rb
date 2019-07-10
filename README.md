@@ -4,6 +4,8 @@ Get your Nubank bills within the terminal, using its public API.
 
 ### Usage
 
+> DISCLAIMER: All steps here are dependent on Nubank API's availability, and there aren't retries for network or other kinds of unexpected errors.
+
 Install [ruby](https://www.ruby-lang.org/en/documentation/installation/#ruby-install) case you don't have it yet. I suggest at least the version 2.5.3.
 
 Clone this repository, then run the command `/path/to/this/repo ruby nubank.rb`.
