@@ -27,7 +27,7 @@ uuid = SecureRandom.uuid
 qr_code = QrCode::Creator.call(uuid)
 QrCode::Render.call(qr_code, uuid)
 
-SECONDS_TO_SCAN_QRCODE = 45
+SECONDS_TO_SCAN_QRCODE = 15
 puts "========> You have #{SECONDS_TO_SCAN_QRCODE} seconds to scan it!"
 sleep SECONDS_TO_SCAN_QRCODE
 
@@ -49,7 +49,8 @@ bills = Request::Bills.call(bills_url, qr_code_access_token).fetch(:bills)
 # 6) Select one or more bills to get detailed information
 puts
 puts 'Choose bill to get data from (enter "999" for all bills):'
-bills.reject! { |bill| bill[:state] == 'future' }.each_with_index do |bill, index|
+bills.reject! { |bill| bill[:state] == 'future' }
+Array(bills).each_with_index do |bill, index|
   state = bill[:state]
   due_date = bill.dig(:summary, :due_date)
   expenses = bill.dig(:summary, :expenses)
