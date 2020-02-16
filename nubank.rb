@@ -50,7 +50,7 @@ bills.reject! { |bill| bill[:state] == 'future' }
 Array(bills).each_with_index do |bill, index|
   state = bill[:state]
   effective_due_date = bill.dig(:summary, :effective_due_date)
-  total_balance = bill.dig(:summary, :total_balance)
+  total_balance = '%.2f' % bill[:summary].fetch(:total_balance, 0.0)
   puts "#{index}) [#{state}] R$ #{total_balance}, effective due date: #{effective_due_date}"
 end
 chosen_bill_index = gets.chomp.to_i
