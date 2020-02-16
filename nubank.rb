@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pry'
 require 'securerandom'
 require_relative './qr_code/creator'
 require_relative './qr_code/render'
@@ -27,10 +28,6 @@ uuid = SecureRandom.uuid
 qr_code = QrCode::Creator.call(uuid)
 QrCode::Render.call(qr_code, uuid)
 
-SECONDS_TO_SCAN_QRCODE = 15
-puts "========> You have #{SECONDS_TO_SCAN_QRCODE} seconds to scan it!"
-sleep SECONDS_TO_SCAN_QRCODE
-
 # 3) Call login URL, to obtain an access_token
 puts '====> Authenticating login and password...'
 login_response = Request::Auth::Password.call(urls[:login], login, password)
@@ -52,9 +49,9 @@ puts 'Choose bill to get data from (enter "999" for all bills):'
 bills.reject! { |bill| bill[:state] == 'future' }
 Array(bills).each_with_index do |bill, index|
   state = bill[:state]
-  due_date = bill.dig(:summary, :due_date)
-  expenses = bill.dig(:summary, :expenses)
-  puts "#{index}) [#{state}] R$ #{expenses}, due date: #{due_date}"
+  effective_due_date = bill.dig(:summary, :effective_due_date)
+  total_balance = bill.dig(:summary, :total_balance)
+  puts "#{index}) [#{state}] R$ #{total_balance}, effective due date: #{effective_due_date}"
 end
 chosen_bill_index = gets.chomp.to_i
 
