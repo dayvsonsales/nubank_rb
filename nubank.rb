@@ -46,13 +46,17 @@ bills = Request::Bills.call(bills_url, qr_code_access_token).fetch(:bills)
 # 6) Select one or more bills to get detailed information
 puts
 puts 'Choose bill to get data from (enter "999" for all bills):'
+
 bills.reject! { |bill| bill[:state] == 'future' }
+
 Array(bills).each_with_index do |bill, index|
   state = bill[:state]
   effective_due_date = bill.dig(:summary, :effective_due_date)
-  total_balance = '%.2f' % bill[:summary].fetch(:total_balance, 0.0)
-  puts "#{index}) [#{state}] R$ #{total_balance}, effective due date: #{effective_due_date}"
+  total_cumulative = '%.2f' % (bill[:summary].fetch(:total_cumulative, 0.0)/100.0)
+  total_balance = '%.2f' % (bill[:summary].fetch(:total_balance, 0.0)/100.0)
+  puts "#{index}) [#{state}] Total cumulative: R$ #{total_cumulative} Total balance: R$ #{total_balance}, effective due date: #{effective_due_date}"
 end
+
 chosen_bill_index = gets.chomp.to_i
 
 if chosen_bill_index == 999
