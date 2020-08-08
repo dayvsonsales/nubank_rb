@@ -13,3 +13,4 @@ gem 'simplecov', require: false
 gem 'rubocop', require: false
 gem 'rubycritic'
 gem 'pry'
+gem 'spreadsheet'

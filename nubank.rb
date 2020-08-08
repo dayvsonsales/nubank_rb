@@ -49,13 +49,28 @@ puts 'Choose bill to get data from (enter "999" for all bills):'
 
 bills.reject! { |bill| bill[:state] == 'future' }
 
+years = Hash.new
+
 Array(bills).each_with_index do |bill, index|
   state = bill[:state]
   effective_due_date = bill.dig(:summary, :effective_due_date)
   total_cumulative = '%.2f' % (bill[:summary].fetch(:total_cumulative, 0.0)/100.0)
   total_balance = '%.2f' % (bill[:summary].fetch(:total_balance, 0.0)/100.0)
   puts "#{index}) [#{state}] Total cumulative: R$ #{total_cumulative} Total balance: R$ #{total_balance}, effective due date: #{effective_due_date}"
+
+  year = effective_due_date.split("-")[0].to_i
+  month = effective_due_date.split("-")[1].to_i
+
+  if years.has_key?(year) then 
+    years[year][month] = total_cumulative
+  else
+    years[year] = Hash.new
+    years[year][month] = total_cumulative
+  end
+
 end
+
+Xlsx::Creator.call_years(years)
 
 chosen_bill_index = gets.chomp.to_i
 
